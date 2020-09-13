@@ -3,8 +3,6 @@ package ru.guhar4k.repository;
 import ru.guhar4k.model.User;
 
 public class UserRepositoryImpl implements UserRepository {
-    private final String filepath = "regions.txt";
-
     @Override
     public void save(User obj) {
 
