@@ -3,23 +3,25 @@ package ru.guhar4k.repository;
 import ru.guhar4k.model.User;
 
 public class UserRepositoryImpl implements UserRepository {
+    private final String filepath = "regions.txt";
+
     @Override
-    public void create(User user, Long id) {
+    public void save(User obj) {
 
     }
 
     @Override
-    public User get(Long id) {
+    public User getById(Long aLong) {
         return null;
     }
 
     @Override
-    public void update(User user, Long id) {
+    public void update(User obj, Long aLong) {
 
     }
 
     @Override
-    public void delete(Long id) {
+    public void deleteById(Long aLong) {
 
     }
 }

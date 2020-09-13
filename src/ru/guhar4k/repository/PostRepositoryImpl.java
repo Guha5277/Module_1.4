@@ -1,23 +1,25 @@
 package ru.guhar4k.repository;
 
+import ru.guhar4k.model.Region;
+
 public class PostRepositoryImpl implements PostRepository {
     @Override
-    public void create(String obj, Long aLong) {
+    public void save(Region obj) {
 
     }
 
     @Override
-    public String get(Long aLong) {
+    public Region getById(Long aLong) {
         return null;
     }
 
     @Override
-    public void update(String obj, Long aLong) {
+    public void update(Region obj, Long aLong) {
 
     }
 
     @Override
-    public void delete(Long aLong) {
+    public void deleteById(Long aLong) {
 
     }
 }

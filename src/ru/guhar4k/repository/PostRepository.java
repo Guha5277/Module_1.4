@@ -1,4 +1,6 @@
 package ru.guhar4k.repository;
 
-public interface PostRepository extends GenericRepository<String, Long> {
+import ru.guhar4k.model.Region;
+
+public interface PostRepository extends GenericRepository<Region, Long> {
 }
