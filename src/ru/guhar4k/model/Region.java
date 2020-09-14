@@ -8,8 +8,17 @@ public class Region {
         this.name = name;
     }
 
+    public Region(long id, String name) {
+        this(name);
+        this.id = id;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getId() {
@@ -18,5 +27,10 @@ public class Region {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        return id + ":" + name;
     }
 }
