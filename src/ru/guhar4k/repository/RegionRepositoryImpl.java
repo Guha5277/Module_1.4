@@ -3,6 +3,7 @@ package ru.guhar4k.repository;
 import ru.guhar4k.model.Region;
 
 import java.io.File;
+import java.util.List;
 
 public class RegionRepositoryImpl implements RegionRepository {
     private final String FILE_PATH = "regions.txt";
@@ -26,5 +27,10 @@ public class RegionRepositoryImpl implements RegionRepository {
     @Override
     public void deleteById(Long aLong) {
 
+    }
+
+    @Override
+    public List<Region> getAll() {
+        return null;
     }
 }

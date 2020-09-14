@@ -2,7 +2,7 @@ package ru.guhar4k.model;
 
 import java.time.LocalDateTime;
 
-class Post {
+public class Post {
     private long id;
     private String content;
     private LocalDateTime created;
