@@ -5,6 +5,7 @@ import ru.guhar4k.model.Region;
 
 import java.io.*;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class RegionView {
@@ -91,19 +92,25 @@ public class RegionView {
 
     private void showAllRecords() {
         showMsg("Получение всех записей в формате ID:NAME");
-        List<Region> regionList = regionController.getAll();
-        regionList.forEach(r -> showMsg(r.toString()));
+        try {
+            List<Region> regionList = regionController.getAll();
+            regionList.forEach(r -> showMsg(r.toString()));
+        } catch (NoSuchElementException e){
+            showError("Репозиторий пуст!");
+        }
     }
 
     private void getById(String[] command) {
         if (command.length > 1) {
-            showMsg("Получение записи по id");
+            showMsg("Получение записи по ID...");
             try {
                 Long id = Long.valueOf(command[1]);
                 Region region = regionController.getById(id);
                 showMsg(region.toString());
             } catch (NumberFormatException e) {
                 showError("Неверный аргумент для комманды " + CMD_GET_BY_ID);
+            } catch (NoSuchElementException e) {
+                showError("Запись с указанным ID отсутствует!");
             }
         } else {
             showError("Отсутствуют аргументы для комманды " + CMD_GET_BY_ID);
@@ -132,6 +139,8 @@ public class RegionView {
                 showAllRecords();
             } catch (NumberFormatException e) {
                 showError("Неверный аргумент для комманды " + CMD_DELETE);
+            } catch (NoSuchElementException e){
+                showError("Удаляемый элемент не найден!");
             }
         } else {
             showError("Отсутствуют аргументы для комманды " + CMD_DELETE);
@@ -151,6 +160,8 @@ public class RegionView {
                 showAllRecords();
             } catch (NumberFormatException e) {
                 showError("Неверный аргумент для комманды " + CMD_EDIT_BY_ID);
+            } catch (NoSuchElementException e) {
+                showError("Изменяемая запись отсутствует");
             }
         } else {
             showError("Неверное количество аргументов для комманды " + CMD_EDIT_BY_ID);
