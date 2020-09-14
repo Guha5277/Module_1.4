@@ -7,22 +7,22 @@ import java.util.List;
 public class PostRepositoryImpl implements PostRepository {
 
     @Override
-    public void save(Post obj) {
+    public void save(Post post) {
 
     }
 
     @Override
-    public Post getById(Long aLong) {
+    public Post getById(Long id) {
         return null;
     }
 
     @Override
-    public void update(Post obj, Long aLong) {
+    public void update(Post post) {
 
     }
 
     @Override
-    public void deleteById(Long aLong) {
+    public void deleteById(Long id) {
 
     }
 

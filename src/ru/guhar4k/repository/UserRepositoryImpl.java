@@ -6,22 +6,22 @@ import java.util.List;
 
 public class UserRepositoryImpl implements UserRepository {
     @Override
-    public void save(User obj) {
+    public void save(User user) {
 
     }
 
     @Override
-    public User getById(Long aLong) {
+    public User getById(Long id) {
         return null;
     }
 
     @Override
-    public void update(User obj, Long aLong) {
+    public void update(User user) {
 
     }
 
     @Override
-    public void deleteById(Long aLong) {
+    public void deleteById(Long id) {
 
     }
 
