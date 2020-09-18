@@ -8,6 +8,13 @@ public class Post {
     private LocalDateTime created;
     private LocalDateTime updated;
 
+    public Post(long id, String content, LocalDateTime created, LocalDateTime updated) {
+        this.id = id;
+        this.content = content;
+        this.created = created;
+        this.updated = updated;
+    }
+
     public long getId() {
         return id;
     }
