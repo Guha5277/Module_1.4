@@ -6,8 +6,8 @@ import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static main.java.guhar4k.crud.utils.Library.REC_END;
-import static main.java.guhar4k.crud.utils.Library.REC_PART_DELIMITER;
+import static guhar4k.crud.utils.Library.REC_END;
+import static guhar4k.crud.utils.Library.REC_PART_DELIMITER;
 
 public class RegionRepositoryImpl implements RegionRepository {
     private final String RES_DIR = "res/";
