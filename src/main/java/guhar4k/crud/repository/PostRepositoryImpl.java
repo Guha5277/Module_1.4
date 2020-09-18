@@ -55,6 +55,16 @@ public class PostRepositoryImpl implements PostRepository {
         return getPostsFromEncodedStrings(encodedPosts);
     }
 
+    private void saveAll(List<Post> list) {
+        StringBuilder sb = new StringBuilder();
+        list.forEach(post -> sb.append(post.getId()).append(REC_PART_DELIMITER)
+                .append(post.getCreated()).append(REC_PART_DELIMITER)
+                .append(post.getUpdated()).append(REC_PART_DELIMITER)
+                .append(post.getContent()).append(REC_END));
+
+        IOUtils.rewriteAllRecords(repositoryFile, sb.toString());
+    }
+
     private List<Post> getPostsFromEncodedStrings(String[] encodedPosts) {
         int ID_PART = 0;
         int CREATED_PART = 1;
