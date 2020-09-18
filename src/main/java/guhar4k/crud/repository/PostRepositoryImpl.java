@@ -5,9 +5,7 @@ import guhar4k.crud.utils.IOUtils;
 
 import java.io.File;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static guhar4k.crud.utils.Library.REC_END;
@@ -34,7 +32,10 @@ public class PostRepositoryImpl implements PostRepository {
 
     @Override
     public Post getById(Long id) {
-        return null;
+        List<Post> postsList = getAll();
+        Optional<Post> region = postsList.stream().filter(r -> r.getId() == id).findFirst();
+        region.orElseThrow(() -> new NoSuchElementException("Repository do not contains record with id " + id));
+        return region.get();
     }
 
     @Override
@@ -78,8 +79,8 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     private void updatePostId(Post post) {
-        List<Post> regionList = getAll();
-        long id = regionList.size() == 0 ? 1 : regionList.get(regionList.size() - 1).getId() + 1;
+        List<Post> postsList = getAll();
+        long id = postsList.size() == 0 ? 1 : postsList.get(postsList.size() - 1).getId() + 1;
         post.setId(id);
     }
 }
