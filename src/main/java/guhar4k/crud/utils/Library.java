@@ -1,4 +1,4 @@
-package ru.guhar4k.repository;
+package main.java.guhar4k.crud.utils;
 
 public class Library {
     public static final String REC_END = "<!e>";

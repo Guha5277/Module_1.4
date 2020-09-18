@@ -1,8 +1,8 @@
-package ru.guhar4k.controller;
+package main.java.guhar4k.crud.controller;
 
-import ru.guhar4k.model.Region;
-import ru.guhar4k.repository.RegionRepository;
-import ru.guhar4k.repository.RegionRepositoryImpl;
+import main.java.guhar4k.crud.repository.RegionRepository;
+import main.java.guhar4k.crud.repository.RegionRepositoryImpl;
+import main.java.guhar4k.crud.model.Region;
 
 import java.util.List;
 

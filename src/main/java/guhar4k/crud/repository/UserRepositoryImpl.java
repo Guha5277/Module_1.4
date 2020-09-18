@@ -1,6 +1,6 @@
-package ru.guhar4k.repository;
+package main.java.guhar4k.crud.repository;
 
-import ru.guhar4k.model.User;
+import main.java.guhar4k.crud.model.User;
 
 import java.util.List;
 

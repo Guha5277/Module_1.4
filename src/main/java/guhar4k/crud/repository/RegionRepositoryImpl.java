@@ -1,13 +1,13 @@
-package ru.guhar4k.repository;
+package main.java.guhar4k.crud.repository;
 
-import ru.guhar4k.model.Region;
+import main.java.guhar4k.crud.model.Region;
 
 import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static ru.guhar4k.repository.Library.REC_END;
-import static ru.guhar4k.repository.Library.REC_PART_DELIMITER;
+import static main.java.guhar4k.crud.utils.Library.REC_END;
+import static main.java.guhar4k.crud.utils.Library.REC_PART_DELIMITER;
 
 public class RegionRepositoryImpl implements RegionRepository {
     private final String RES_DIR = "res/";

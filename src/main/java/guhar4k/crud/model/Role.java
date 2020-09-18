@@ -1,4 +1,4 @@
-package ru.guhar4k.model;
+package main.java.guhar4k.crud.model;
 
 public enum Role {
     ADMIN,

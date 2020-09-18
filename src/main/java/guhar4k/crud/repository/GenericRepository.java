@@ -1,4 +1,4 @@
-package ru.guhar4k.repository;
+package main.java.guhar4k.crud.repository;
 
 import java.util.List;
 
