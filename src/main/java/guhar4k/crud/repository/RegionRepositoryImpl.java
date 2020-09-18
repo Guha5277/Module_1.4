@@ -23,11 +23,7 @@ public class RegionRepositoryImpl implements RegionRepository {
     public void save(Region region) {
         updateRegionId(region);
         String record = region.getId() + REC_PART_DELIMITER + region.getName() + REC_END;
-        try (Writer writer = new FileWriter(repositoryFile, true)) {
-            writer.write(record);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        IOUtils.writeRecord(repositoryFile, record);
     }
 
     @Override
@@ -70,11 +66,7 @@ public class RegionRepositoryImpl implements RegionRepository {
         StringBuilder sb = new StringBuilder();
         list.forEach(r -> sb.append(r.getId()).append(REC_PART_DELIMITER).append(r.getName()).append(REC_END));
 
-        try (Writer writer = new FileWriter(repositoryFile, false)) {
-            writer.write(sb.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        IOUtils.rewriteAllRecords(repositoryFile, sb.toString());
     }
 
     private List<Region> getRegionsFromEncodedStrings(String[] encodedStrings) {
