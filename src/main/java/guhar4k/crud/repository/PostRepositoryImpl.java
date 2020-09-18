@@ -24,7 +24,12 @@ public class PostRepositoryImpl implements PostRepository {
 
     @Override
     public void save(Post post) {
-
+        updatePostId(post);
+        String record = post.getId() + REC_PART_DELIMITER
+                + post.getCreated() + REC_PART_DELIMITER
+                + post.getUpdated() + REC_PART_DELIMITER
+                + post.getContent() + REC_END;
+        IOUtils.writeRecord(repositoryFile, record);
     }
 
     @Override
@@ -60,5 +65,11 @@ public class PostRepositoryImpl implements PostRepository {
             String[] parts = s.split(REC_PART_DELIMITER);
             return new Post(Long.valueOf(parts[ID_PART]), parts[CONTENT_PART], LocalDateTime.parse(parts[CREATED_PART]), LocalDateTime.parse(parts[UPDATED_PART]));
         }).collect(Collectors.toList());
+    }
+
+    private void updatePostId(Post post) {
+        List<Post> regionList = getAll();
+        long id = regionList.size() == 0 ? 1 : regionList.get(regionList.size() - 1).getId() + 1;
+        post.setId(id);
     }
 }

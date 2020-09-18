@@ -30,4 +30,8 @@ public class Post {
     public LocalDateTime getUpdated() {
         return updated;
     }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }
