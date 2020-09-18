@@ -1,10 +1,26 @@
 package guhar4k.crud.repository;
 
 import guhar4k.crud.model.Post;
+import guhar4k.crud.utils.IOUtils;
 
+import java.io.File;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static guhar4k.crud.utils.Library.REC_END;
+import static guhar4k.crud.utils.Library.REC_PART_DELIMITER;
 
 public class PostRepositoryImpl implements PostRepository {
+    private final String RES_DIR = "res/";
+    private final String FILE_NAME = "posts.txt";
+    private final File repositoryFile = new File(RES_DIR, FILE_NAME);
+
+    public PostRepositoryImpl() {
+        if (!repositoryFile.exists()) IOUtils.createNewFile(repositoryFile);
+    }
 
     @Override
     public void save(Post post) {
@@ -28,6 +44,21 @@ public class PostRepositoryImpl implements PostRepository {
 
     @Override
     public List<Post> getAll() {
-        return null;
+        String fileContentString = IOUtils.fileToString(repositoryFile);
+        if (fileContentString.length() == 0 || !fileContentString.contains(REC_END)) return new ArrayList<>();
+        String[] encodedPosts = fileContentString.split(REC_END);
+        return getPostsFromEncodedStrings(encodedPosts);
+    }
+
+    private List<Post> getPostsFromEncodedStrings(String[] encodedPosts) {
+        int ID_PART = 0;
+        int CREATED_PART = 1;
+        int UPDATED_PART = 2;
+        int CONTENT_PART = 3;
+
+        return Arrays.stream(encodedPosts).map(s -> {
+            String[] parts = s.split(REC_PART_DELIMITER);
+            return new Post(Long.valueOf(parts[ID_PART]), parts[CONTENT_PART], LocalDateTime.parse(parts[CREATED_PART]), LocalDateTime.parse(parts[UPDATED_PART]));
+        }).collect(Collectors.toList());
     }
 }
