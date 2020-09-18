@@ -1,14 +1,27 @@
 package guhar4k.crud.utils;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
+import java.io.*;
 
 public class IOUtils {
     public static void createNewFile(File file) {
         try {
             file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void writeRecord(File file, String record) {
+        writeToFile(file, record, true);
+    }
+
+    public static void rewriteAllRecords(File file, String record) {
+        writeToFile(file, record, false);
+    }
+
+    private static void writeToFile(File file, String record, boolean append) {
+        try (Writer writer = new FileWriter(file, append)) {
+            writer.write(record);
         } catch (IOException e) {
             e.printStackTrace();
         }
