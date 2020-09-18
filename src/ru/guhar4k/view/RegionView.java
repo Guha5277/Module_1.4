@@ -69,7 +69,7 @@ public class RegionView {
                 break;
 
             default:
-                showError("Неизвестный запрос! Введите /help для получения справки");
+                showError("Неизвестный запрос! Введите " + CMD_HELP + " для получения справки");
         }
     }
 
@@ -82,7 +82,14 @@ public class RegionView {
     }
 
     private void showHelp() {
-        out.print("Справка и остальная ерунда здесь");
+        out.print("Записи выводятся в формате <ID>:<NAME>\n\t" +
+                CMD_HELP + " - вывод справки\n\t" +
+                CMD_CREATE + " <NAME> - создание новой записи\n\t" +
+                CMD_DELETE + " <ID> - удаление записи\n\t" +
+                CMD_GET_ALL + " - получение всех записей\n\t" +
+                CMD_GET_BY_ID + " <ID> - получение одной записи по ID\n\t" +
+                CMD_EDIT_BY_ID + " <ID> <NAME> - изменение существующей записи\n\t" +
+                CMD_EXIT + " - выход из программы\n");
     }
 
     private void exit() {
@@ -91,18 +98,18 @@ public class RegionView {
     }
 
     private void showAllRecords() {
-        showMsg("Получение всех записей в формате ID:NAME");
-        try {
-            List<Region> regionList = regionController.getAll();
-            regionList.forEach(r -> showMsg(r.toString()));
-        } catch (NoSuchElementException e){
+        showMsg("Получение всех записей...");
+        List<Region> regionList = regionController.getAll();
+        if (regionList.size() == 0) {
             showError("Репозиторий пуст!");
+            return;
         }
+        regionList.forEach(r -> showMsg(r.toString()));
     }
 
     private void getById(String[] command) {
         if (command.length > 1) {
-            showMsg("Получение записи по ID...");
+            showMsg("Получение записи...");
             try {
                 Long id = Long.valueOf(command[1]);
                 Region region = regionController.getById(id);
@@ -131,7 +138,7 @@ public class RegionView {
 
     private void deleteRecord(String[] command) {
         if (command.length > 1) {
-            showMsg("Удаление записи по id");
+            showMsg("Удаление записи...");
             try {
                 Long id = Long.valueOf(command[1]);
                 regionController.deleteById(id);
@@ -139,7 +146,7 @@ public class RegionView {
                 showAllRecords();
             } catch (NumberFormatException e) {
                 showError("Неверный аргумент для комманды " + CMD_DELETE);
-            } catch (NoSuchElementException e){
+            } catch (NoSuchElementException e) {
                 showError("Удаляемый элемент не найден!");
             }
         } else {
