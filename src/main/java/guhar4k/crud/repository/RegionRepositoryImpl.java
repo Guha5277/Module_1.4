@@ -1,6 +1,7 @@
 package guhar4k.crud.repository;
 
 import guhar4k.crud.model.Region;
+import guhar4k.crud.utils.IOUtils;
 
 import java.io.*;
 import java.util.*;
@@ -15,7 +16,7 @@ public class RegionRepositoryImpl implements RegionRepository {
     private final File repositoryFile = new File(RES_DIR, FILE_NAME);
 
     public RegionRepositoryImpl() {
-        if (!repositoryFile.exists()) createRepoFile();
+        if (!repositoryFile.exists()) IOUtils.createNewFile(repositoryFile);
     }
 
     @Override
@@ -57,7 +58,7 @@ public class RegionRepositoryImpl implements RegionRepository {
 
     @Override
     public List<Region> getAll() {
-        String fileContentString = fileToString(repositoryFile);
+        String fileContentString = IOUtils.fileToString(repositoryFile);
         if (fileContentString.length() == 0 || !fileContentString.contains(REC_END)) return new ArrayList<>();
 
         String[] encodedRegions = fileContentString.split(REC_END);
@@ -65,7 +66,7 @@ public class RegionRepositoryImpl implements RegionRepository {
         return getRegionsFromEncodedStrings(encodedRegions);
     }
 
-    private void saveAll(List<Region> list){
+    private void saveAll(List<Region> list) {
         StringBuilder sb = new StringBuilder();
         list.forEach(r -> sb.append(r.getId()).append(REC_PART_DELIMITER).append(r.getName()).append(REC_END));
 
@@ -76,28 +77,7 @@ public class RegionRepositoryImpl implements RegionRepository {
         }
     }
 
-    private void createRepoFile() {
-        try {
-            repositoryFile.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private String fileToString(File file) {
-        StringBuilder sb = new StringBuilder();
-        try (Reader reader = new FileReader(file)) {
-            int c;
-            while ((c = reader.read()) != -1) {
-                sb.append((char) c);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return sb.toString();
-    }
-
-    private List<Region> getRegionsFromEncodedStrings(String[] encodedStrings){
+    private List<Region> getRegionsFromEncodedStrings(String[] encodedStrings) {
         int ID_PART = 0;
         int NAME_PART = 1;
         return Arrays.stream(encodedStrings).map(s -> {
@@ -106,8 +86,8 @@ public class RegionRepositoryImpl implements RegionRepository {
         }).collect(Collectors.toList());
     }
 
-    private void updateRegionId(Region region){
-        List<Region> regionList= getAll();
+    private void updateRegionId(Region region) {
+        List<Region> regionList = getAll();
         long id = regionList.size() == 0 ? 1 : regionList.get(regionList.size() - 1).getId() + 1;
         region.setId(id);
     }
