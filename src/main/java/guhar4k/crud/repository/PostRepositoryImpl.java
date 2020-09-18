@@ -40,7 +40,12 @@ public class PostRepositoryImpl implements PostRepository {
 
     @Override
     public void update(Post post) {
-
+        List<Post> postsList = getAll();
+        Optional<Post> resultPost = postsList.stream().filter(r -> r.getId() == post.getId()).findFirst();
+        Post editedPost = resultPost.orElseThrow(() -> new NoSuchElementException("Repository do not contains updated item"));
+        editedPost.setContent(post.getContent());
+        editedPost.setUpdated(LocalDateTime.now());
+        saveAll(postsList);
     }
 
     @Override

@@ -34,4 +34,12 @@ public class Post {
     public void setId(long id) {
         this.id = id;
     }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setUpdated(LocalDateTime updated) {
+        this.updated = updated;
+    }
 }
