@@ -1,4 +1,4 @@
-package main.java.guhar4k.crud.view;
+package guhar4k.crud.view;
 
 public class UserView {
 }

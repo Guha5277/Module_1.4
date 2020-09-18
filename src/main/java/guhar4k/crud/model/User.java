@@ -1,4 +1,4 @@
-package main.java.guhar4k.crud.model;
+package guhar4k.crud.model;
 
 import java.util.List;
 

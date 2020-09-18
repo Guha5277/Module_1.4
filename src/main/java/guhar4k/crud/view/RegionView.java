@@ -1,7 +1,7 @@
-package main.java.guhar4k.crud.view;
+package guhar4k.crud.view;
 
-import main.java.guhar4k.crud.controller.RegionController;
-import main.java.guhar4k.crud.model.Region;
+import guhar4k.crud.controller.RegionController;
+import guhar4k.crud.model.Region;
 
 import java.io.*;
 import java.util.List;

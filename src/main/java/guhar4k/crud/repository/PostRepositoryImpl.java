@@ -1,6 +1,6 @@
-package main.java.guhar4k.crud.repository;
+package guhar4k.crud.repository;
 
-import main.java.guhar4k.crud.model.Post;
+import guhar4k.crud.model.Post;
 
 import java.util.List;
 
