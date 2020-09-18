@@ -3,10 +3,7 @@ package ru.guhar4k.repository;
 import ru.guhar4k.model.Region;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static ru.guhar4k.repository.Library.REC_END;
@@ -36,8 +33,7 @@ public class RegionRepositoryImpl implements RegionRepository {
     public Region getById(Long id) {
         List<Region> regionsList = getAll();
         Optional<Region> region = regionsList.stream().filter(r -> r.getId() == id).findFirst();
-        //TODO возврат null, генерация исключения?
-        if (!region.isPresent()) throw new NoSuchElementException("Repository do not contains record with id " + id);
+        region.orElseThrow(() -> new NoSuchElementException("Repository do not contains record with id " + id));
         return region.get();
     }
 
@@ -45,7 +41,7 @@ public class RegionRepositoryImpl implements RegionRepository {
     public void update(Region region) {
         List<Region> regionsList = getAll();
         Optional<Region> resultRegion = regionsList.stream().filter(r -> r.getId() == region.getId()).findFirst();
-        if (!resultRegion.isPresent()) throw new NoSuchElementException("Repository do not contains updated item");
+        resultRegion.orElseThrow(() -> new NoSuchElementException("Repository do not contains updated item"));
         resultRegion.get().setName(region.getName());
         saveAll(regionsList);
     }
@@ -54,8 +50,7 @@ public class RegionRepositoryImpl implements RegionRepository {
     public void deleteById(Long id) {
         List<Region> regionsList = getAll();
         Optional<Region> region = regionsList.stream().filter(r -> r.getId() == id).findFirst();
-        if (!region.isPresent()) throw new NoSuchElementException("Repository do not contains record with id " + id);
-
+        region.orElseThrow(() -> new NoSuchElementException("Repository do not contains record with id " + id));
         regionsList.remove(region.get());
         saveAll(regionsList);
     }
@@ -63,7 +58,7 @@ public class RegionRepositoryImpl implements RegionRepository {
     @Override
     public List<Region> getAll() {
         String fileContentString = fileToString(repositoryFile);
-        if (fileContentString.length() == 0 || !fileContentString.contains(REC_END)) throw new NoSuchElementException("Repository do not contains any record (repository is empty)");
+        if (fileContentString.length() == 0 || !fileContentString.contains(REC_END)) return new ArrayList<>();
 
         String[] encodedRegions = fileContentString.split(REC_END);
 
@@ -112,14 +107,8 @@ public class RegionRepositoryImpl implements RegionRepository {
     }
 
     private void updateRegionId(Region region){
-        List<Region> regionList;
-        long id = 1;
-        try {
-            regionList = getAll();
-            id =  regionList.get(regionList.size() - 1).getId() + 1;
-        } catch (NoSuchElementException e){
-            e.printStackTrace();
-        }
+        List<Region> regionList= getAll();
+        long id = regionList.size() == 0 ? 1 : regionList.get(regionList.size() - 1).getId() + 1;
         region.setId(id);
     }
 }
