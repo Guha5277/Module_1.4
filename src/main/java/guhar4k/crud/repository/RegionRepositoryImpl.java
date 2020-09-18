@@ -69,10 +69,10 @@ public class RegionRepositoryImpl implements RegionRepository {
         IOUtils.rewriteAllRecords(repositoryFile, sb.toString());
     }
 
-    private List<Region> getRegionsFromEncodedStrings(String[] encodedStrings) {
+    private List<Region> getRegionsFromEncodedStrings(String[] encodedRegions) {
         int ID_PART = 0;
         int NAME_PART = 1;
-        return Arrays.stream(encodedStrings).map(s -> {
+        return Arrays.stream(encodedRegions).map(s -> {
             String[] parts = s.split(REC_PART_DELIMITER);
             return new Region(Long.valueOf(parts[ID_PART]), parts[NAME_PART]);
         }).collect(Collectors.toList());
