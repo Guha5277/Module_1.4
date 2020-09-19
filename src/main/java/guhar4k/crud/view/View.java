@@ -17,7 +17,7 @@ public class View {
     final String CMD_DELETE = "del";
     private final String REPOSITORY_NAME;
 
-    public View(Scanner in, PrintStream out, String repositoryName) {
+    View(Scanner in, PrintStream out, String repositoryName) {
         this.scanner = in;
         this.out = out;
         this.REPOSITORY_NAME = repositoryName;
@@ -104,6 +104,6 @@ public class View {
     }
 
     private void throwException() {
-        throw new RuntimeException("Метод не переопределён! Продолжение программы невозможно!");
+        throw new RuntimeException("Метод не переопределён, продолжение работы программы невозможно!");
     }
 }
