@@ -1,6 +1,7 @@
 package guhar4k.crud.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Post {
     private long id;
@@ -13,6 +14,12 @@ public class Post {
         this.content = content;
         this.created = created;
         this.updated = updated;
+    }
+
+    public Post(String content) {
+        this.content = content;
+        created = LocalDateTime.now();
+        updated = LocalDateTime.now();
     }
 
     public long getId() {
@@ -42,5 +49,11 @@ public class Post {
 
     private void setNewUpdatedTime(){
         updated = LocalDateTime.now();
+    }
+
+    @Override
+    public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+        return id + "|" + created.format(formatter) + "|" + updated.format(formatter) + "\n" + content;
     }
 }
