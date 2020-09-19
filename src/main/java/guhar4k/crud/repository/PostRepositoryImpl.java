@@ -44,7 +44,6 @@ public class PostRepositoryImpl implements PostRepository {
         Optional<Post> resultPost = postsList.stream().filter(r -> r.getId() == post.getId()).findFirst();
         Post editedPost = resultPost.orElseThrow(() -> new NoSuchElementException("Repository do not contains updated item"));
         editedPost.setContent(post.getContent());
-        editedPost.setUpdated(LocalDateTime.now());
         saveAll(postsList);
     }
 

@@ -37,9 +37,10 @@ public class Post {
 
     public void setContent(String content) {
         this.content = content;
+        setNewUpdatedTime();
     }
 
-    public void setUpdated(LocalDateTime updated) {
-        this.updated = updated;
+    private void setNewUpdatedTime(){
+        updated = LocalDateTime.now();
     }
 }
