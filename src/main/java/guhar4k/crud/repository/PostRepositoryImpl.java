@@ -49,7 +49,11 @@ public class PostRepositoryImpl implements PostRepository {
 
     @Override
     public void deleteById(Long id) {
-
+        List<Post> postsList = getAll();
+        Optional<Post> post = postsList.stream().filter(p -> p.getId() == id).findFirst();
+        post.orElseThrow(() -> new NoSuchElementException("Repository do not contains record with id " + id));
+        postsList.remove(post.get());
+        saveAll(postsList);
     }
 
     @Override
