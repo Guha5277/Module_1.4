@@ -33,7 +33,7 @@ public class PostRepositoryImpl implements PostRepository {
     @Override
     public Post getById(Long id) {
         List<Post> postsList = getAll();
-        Optional<Post> region = postsList.stream().filter(r -> r.getId() == id).findFirst();
+        Optional<Post> region = postsList.stream().filter(p -> p.getId() == id).findFirst();
         region.orElseThrow(() -> new NoSuchElementException("Repository do not contains record with id " + id));
         return region.get();
     }
@@ -41,7 +41,7 @@ public class PostRepositoryImpl implements PostRepository {
     @Override
     public void update(Post post) {
         List<Post> postsList = getAll();
-        Optional<Post> resultPostOptional = postsList.stream().filter(r -> r.getId() == post.getId()).findFirst();
+        Optional<Post> resultPostOptional = postsList.stream().filter(p -> p.getId() == post.getId()).findFirst();
         Post resultPost = resultPostOptional.orElseThrow(() -> new NoSuchElementException("Repository do not contains updated item"));
         resultPost.setContent(post.getContent());
         saveAll(postsList);
