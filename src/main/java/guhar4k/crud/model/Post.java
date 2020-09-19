@@ -9,17 +9,22 @@ public class Post {
     private LocalDateTime created;
     private LocalDateTime updated;
 
+    public Post(String content) {
+        this.content = content;
+        created = LocalDateTime.now();
+        updated = LocalDateTime.now();
+    }
+
+    public Post(long id, String content) {
+        this.id = id;
+        this.content = content;
+    }
+
     public Post(long id, String content, LocalDateTime created, LocalDateTime updated) {
         this.id = id;
         this.content = content;
         this.created = created;
         this.updated = updated;
-    }
-
-    public Post(String content) {
-        this.content = content;
-        created = LocalDateTime.now();
-        updated = LocalDateTime.now();
     }
 
     public long getId() {
