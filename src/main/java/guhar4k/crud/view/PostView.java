@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class PostView extends View {
-    PostController postController;
+    private PostController postController;
 
     public PostView() {
         super(new Scanner(System.in), new PrintStream(System.out), "База данных постов");
