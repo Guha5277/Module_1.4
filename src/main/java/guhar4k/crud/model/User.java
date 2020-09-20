@@ -9,11 +9,15 @@ public class User {
     private List<Post> posts;
     private Region region;
 
-    public User(Long id, String firstName, String lastName, Region region, List<Post> posts) {
-        this.id = id;
+    public User(String firstName, String lastName, Region region) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.region = region;
+    }
+
+    public User(Long id, String firstName, String lastName, Region region, List<Post> posts) {
+        this(firstName, lastName, region);
+        this.id = id;
         this.posts = posts;
     }
 
