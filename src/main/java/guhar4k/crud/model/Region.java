@@ -4,6 +4,10 @@ public class Region {
     private long id;
     private String name;
 
+    public Region(Long id) {
+        this.id = id;
+    }
+
     public Region(String name) {
         this.name = name;
     }
