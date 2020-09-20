@@ -18,9 +18,9 @@ public class UserRepositoryImpl implements UserRepository {
     private PostRepository postRepository;
     private RegionRepository regionRepository;
 
-    public UserRepositoryImpl(PostRepository postRepository, RegionRepository regionRepository) {
-        this.postRepository = postRepository;
-        this.regionRepository = regionRepository;
+    public UserRepositoryImpl() {
+        this.postRepository = new PostRepositoryImpl();
+        this.regionRepository = new RegionRepositoryImpl();
         if (!repositoryFile.exists()) IOUtils.createNewFile(repositoryFile);
     }
 

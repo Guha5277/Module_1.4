@@ -1,8 +1,6 @@
 package guhar4k.crud.controller;
 
 import guhar4k.crud.model.User;
-import guhar4k.crud.repository.PostRepository;
-import guhar4k.crud.repository.RegionRepository;
 import guhar4k.crud.repository.UserRepository;
 import guhar4k.crud.repository.UserRepositoryImpl;
 
@@ -11,8 +9,8 @@ import java.util.List;
 public class UserController {
     UserRepository userRepository;
 
-    public UserController(PostRepository postRepository, RegionRepository regionRepository) {
-        userRepository = new UserRepositoryImpl(postRepository, regionRepository);
+    public UserController() {
+        userRepository = new UserRepositoryImpl();
     }
 
     public void save(User user) {
