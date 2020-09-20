@@ -8,4 +8,52 @@ public class User {
     private String lastName;
     private List<Post> posts;
     private Region region;
+
+    public User(Long id, String firstName, String lastName, Region region, List<Post> posts) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.region = region;
+        this.posts = posts;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public Region getRegion() {
+        return region;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public void setRegion(Region region) {
+        this.region = region;
+    }
 }
