@@ -5,6 +5,7 @@ import guhar4k.crud.model.Region;
 import guhar4k.crud.model.User;
 
 import java.io.PrintStream;
+import java.util.List;
 import java.util.Scanner;
 
 public class UserView extends View{
@@ -22,7 +23,7 @@ public class UserView extends View{
 
     @Override
     void showHelp() {
-        showMsg("Записи выводятся в формате <ID>|<FNAME>|<LNAME>|<POSTS_ID>|<REGION>\n\t" +
+        showMsg("Записи выводятся в формате <ID>|<FNAME>|<LNAME>|<REGION>|<POSTS_ID>\n\t" +
                 CMD_HELP + " - вывод справки\n\t" +
                 CMD_CREATE + " <FIRST_NAME> <LAST_NAME> <REGION_ID> - создание нового пользователя\n\t" +
                 CMD_DELETE + " <ID> - удаление пользователя\n\t" +
@@ -54,5 +55,16 @@ public class UserView extends View{
         } else {
             showError("Невереное количество аргументов для команды " + CMD_CREATE);
         }
+    }
+
+    @Override
+    void showAllRecords() {
+        showMsg("Получение всех записей...");
+        List<User> users = userController.getAll();
+        if (users.size() == 0){
+            showError("Список пользователей пуст");
+            return;
+        }
+        users.forEach(u -> showMsg(u.toString()));
     }
 }
