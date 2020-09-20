@@ -60,4 +60,17 @@ public class User {
     public void setRegion(Region region) {
         this.region = region;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder postsSB = new StringBuilder();
+        if (posts != null && posts.size() > 0){
+            for (int i = 0; i < posts.size(); i++) {
+                postsSB.append(posts.get(i));
+                if (i != posts.size() - 1) postsSB.append(" ");
+            }
+        }
+
+        return id + "|" + firstName + "|" + lastName + "|" + region.getId() + "|" + postsSB.toString();
+    }
 }
