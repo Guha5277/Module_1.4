@@ -72,12 +72,12 @@ public class UserRepositoryImpl implements UserRepository {
         return user.getId() + REC_PART_DELIMITER
                 + user.getFirstName() + REC_PART_DELIMITER
                 + user.getLastName() + REC_PART_DELIMITER
-                + user.getRegion() + REC_PART_DELIMITER
+                + user.getRegion().getId() + REC_PART_DELIMITER
                 + postListToString(user.getPosts()) + REC_END;
     }
 
     private String postListToString(List<Post> postList) {
-        if (postList == null || postList.size() == 0) return String.valueOf(0);
+        if (postList == null || postList.size() == 0) return "0";
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < postList.size(); i++) {
@@ -105,6 +105,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     private List<Post> postListFromString(String encodedPostList) {
         String[] postsId = encodedPostList.split(REC_POST_ID_DELIMITER);
+        if (postsId.length == 1 && postsId[0].equals("0")) return new ArrayList<>();
         List<Post> postList = new ArrayList<>();
 
         for (String pl : postsId) {
