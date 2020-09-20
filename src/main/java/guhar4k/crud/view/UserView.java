@@ -6,6 +6,7 @@ import guhar4k.crud.model.User;
 
 import java.io.PrintStream;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class UserView extends View{
@@ -66,5 +67,24 @@ public class UserView extends View{
             return;
         }
         users.forEach(u -> showMsg(u.toString()));
+    }
+
+    @Override
+    void deleteRecord(String[] command) {
+        if (command.length > 1) {
+            showMsg("Удаление пользователя...");
+            try {
+                Long id = Long.valueOf(command[1]);
+                userController.deleteById(id);
+                showMsg("Запись удалена!");
+                showAllRecords();
+            } catch (NumberFormatException e) {
+                showError("Неверный аргумент для комманды " + CMD_DELETE);
+            } catch (NoSuchElementException e) {
+                showError("Удаляемый пользователь не найден!");
+            }
+        } else {
+            showError("Отсутствуют аргументы для комманды " + CMD_DELETE);
+        }
     }
 }
