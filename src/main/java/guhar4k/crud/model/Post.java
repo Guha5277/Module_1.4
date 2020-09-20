@@ -9,15 +9,19 @@ public class Post {
     private LocalDateTime created;
     private LocalDateTime updated;
 
+    public Post(long id) {
+        this.id = id;
+    }
+
+    public Post(long id, String content) {
+        this(id);
+        this.content = content;
+    }
+
     public Post(String content) {
         this.content = content;
         created = LocalDateTime.now();
         updated = LocalDateTime.now();
-    }
-
-    public Post(long id, String content) {
-        this.id = id;
-        this.content = content;
     }
 
     public Post(long id, String content, LocalDateTime created, LocalDateTime updated) {
@@ -59,6 +63,12 @@ public class Post {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
-        return id + "|" + created.format(formatter) + "|" + updated.format(formatter) + "\n" + content;
+        StringBuilder sb = new StringBuilder();
+        sb.append(id).append("|");
+        if (created != null) sb.append(created.format(formatter)).append("|");
+        if (updated != null) sb.append(updated.format(formatter)).append("|");
+        sb.append("\n").append(content);
+
+        return sb.toString();
     }
 }
