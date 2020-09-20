@@ -87,4 +87,22 @@ public class UserView extends View{
             showError("Отсутствуют аргументы для комманды " + CMD_DELETE);
         }
     }
+
+    @Override
+    void getById(String[] command) {
+        if (command.length > 1) {
+            showMsg("Получение пользователя...");
+            try {
+                Long id = Long.valueOf(command[1]);
+                User user = userController.getById(id);
+                showMsg(user.toString());
+            } catch (NumberFormatException e) {
+                showError("Неверный аргумент для комманды " + CMD_GET_BY_ID);
+            } catch (NoSuchElementException e) {
+                showError("Пользователь с указанным ID отсутствует!");
+            }
+        } else {
+            showError("Отсутствуют аргументы для комманды " + CMD_GET_BY_ID);
+        }
+    }
 }
