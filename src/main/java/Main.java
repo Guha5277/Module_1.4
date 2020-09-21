@@ -5,7 +5,7 @@ import guhar4k.crud.view.UserView;
 public class Main {
     public static void main(String[] args) {
         if (args.length == 1) {
-            switch (args[1]){
+            switch (args[0]){
                 case "region":
                     new RegionView();
                     break;
