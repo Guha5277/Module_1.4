@@ -81,7 +81,7 @@ public class UserRepositoryImpl implements UserRepository {
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < postList.size(); i++) {
-            sb.append(postList.get(i));
+            sb.append(postList.get(i).getId());
             if (i != postList.size() - 1) sb.append(REC_POST_ID_DELIMITER);
         }
 
