@@ -66,11 +66,11 @@ public class User {
         StringBuilder postsSB = new StringBuilder();
         if (posts != null && posts.size() > 0){
             for (int i = 0; i < posts.size(); i++) {
-                postsSB.append(posts.get(i));
+                postsSB.append(posts.get(i).getId());
                 if (i != posts.size() - 1) postsSB.append(" ");
             }
         }
 
-        return id + "|" + firstName + "|" + lastName + "|" + region.getId() + "|" + postsSB.toString();
+        return id + "|" + firstName + "|" + lastName + "|" + region.getName() + "|" + postsSB.toString();
     }
 }
