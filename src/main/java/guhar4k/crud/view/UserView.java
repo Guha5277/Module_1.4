@@ -110,9 +110,6 @@ public class UserView extends View {
 
     @Override
     void editRecord(String[] command) {
-        for (String s : command){
-            showMsg(s);
-        }
         if (command.length < 4) {
             showError("Неверное количество аргументов для сомманды: " + CMD_EDIT_BY_ID);
             return;
