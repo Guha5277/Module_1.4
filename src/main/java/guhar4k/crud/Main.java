@@ -1,3 +1,5 @@
+package guhar4k.crud;
+
 import guhar4k.crud.view.PostView;
 import guhar4k.crud.view.RegionView;
 import guhar4k.crud.view.UserView;

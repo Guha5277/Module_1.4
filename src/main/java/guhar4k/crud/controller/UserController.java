@@ -2,7 +2,7 @@ package guhar4k.crud.controller;
 
 import guhar4k.crud.model.User;
 import guhar4k.crud.repository.UserRepository;
-import guhar4k.crud.repository.UserRepositoryImpl;
+import guhar4k.crud.repository.io.JavaIOUserRepositoryImpl;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class UserController {
     UserRepository userRepository;
 
     public UserController() {
-        userRepository = new UserRepositoryImpl();
+        userRepository = new JavaIOUserRepositoryImpl();
     }
 
     public void save(User user) {
