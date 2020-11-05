@@ -3,7 +3,7 @@ package guhar4k.crud.view;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class View {
+public abstract class View {
     private Scanner scanner;
     private PrintStream out;
     private boolean isInterrupted;
@@ -67,29 +67,17 @@ public class View {
         }
     }
 
-    void editRecord(String[] command) {
-        throwException();
-    }
+    abstract void editRecord(String[] command);
 
-    void deleteRecord(String[] command) {
-        throwException();
-    }
+    abstract void deleteRecord(String[] command);
 
-    void createNewRecord(String[] command) {
-        throwException();
-    }
+    abstract void createNewRecord(String[] command);
 
-    void getById(String[] command) {
-        throwException();
-    }
+    abstract void getById(String[] command);
 
-    void showAllRecords() {
-        throwException();
-    }
+    abstract void showAllRecords();
 
-    void showHelp() {
-        throwException();
-    }
+    abstract void showHelp();
 
     void exit() {
         isInterrupted = true;
@@ -101,9 +89,5 @@ public class View {
 
     void showMsg(String msg) {
         out.print(msg + "\n");
-    }
-
-    private void throwException() {
-        throw new RuntimeException("Метод не переопределён, продолжение работы программы невозможно!");
     }
 }
