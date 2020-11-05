@@ -13,7 +13,6 @@ import static guhar4k.crud.utils.Library.REC_END;
 import static guhar4k.crud.utils.Library.REC_PART_DELIMITER;
 
 public class JavaIOPostRepositoryImpl implements PostRepository {
-//    private final String RES_DIR = "res/";
     private final String RES_DIR = "src/main/res/";
     private final String FILE_NAME = "posts.txt";
     private final File repositoryFile = new File(RES_DIR, FILE_NAME);
