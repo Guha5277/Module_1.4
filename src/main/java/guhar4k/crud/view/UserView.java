@@ -12,6 +12,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class UserView extends View {
+    private static View instance;
     private final String CMD_USER_FNAME = "fname";
     private final String CMD_USER_LNAME = "lname";
     private final String CMD_USER_REGION = "region";
@@ -21,7 +22,6 @@ public class UserView extends View {
     public UserView() {
         super(new Scanner(System.in), new PrintStream(System.out), "База данных пользователей");
         userController = new UserController();
-        start();
     }
 
     @Override
@@ -168,5 +168,10 @@ public class UserView extends View {
                 showError("Неизвестная суб-комманда комманды " + CMD_EDIT_BY_ID);
         }
         showAllRecords();
+    }
+
+    static View getInstance() {
+        if (instance == null) instance = new UserView();
+        return instance;
     }
 }

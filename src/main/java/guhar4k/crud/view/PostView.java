@@ -9,12 +9,12 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class PostView extends View {
+    private static View instance;
     private PostController postController;
 
     public PostView() {
         super(new Scanner(System.in), new PrintStream(System.out), "База данных постов");
         postController = new PostController();
-        start();
     }
 
     @Override
@@ -122,5 +122,10 @@ public class PostView extends View {
             if (i != commands.length - 1) sb.append(" ");
         }
         return sb.toString();
+    }
+
+    static View getInstance() {
+        if (instance == null) instance = new PostView();
+        return instance;
     }
 }

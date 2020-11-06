@@ -23,7 +23,7 @@ public abstract class View {
         this.REPOSITORY_NAME = repositoryName;
     }
 
-    void start() {
+    public void start() {
         out.print(REPOSITORY_NAME + ". Введите " + CMD_HELP + " - для получения справки, " + CMD_EXIT + " - для выхода из программы \n");
 
         while (!isInterrupted) {

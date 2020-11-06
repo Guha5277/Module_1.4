@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class RegionView extends View{
+public class RegionView extends View {
+    private static View instance;
     private RegionController regionController;
 
     public RegionView() {
         super(new Scanner(System.in), new PrintStream(System.out), "База данных регионов");
         regionController = new RegionController();
-        start();
     }
 
     @Override
@@ -108,5 +108,10 @@ public class RegionView extends View{
         } else {
             showError("Неверное количество аргументов для комманды " + CMD_EDIT_BY_ID);
         }
+    }
+
+    static View getInstance() {
+        if (instance == null) instance = new RegionView();
+        return instance;
     }
 }
