@@ -7,22 +7,22 @@ import java.util.List;
 
 public class JsonRegionRepositoryImpl implements RegionRepository {
     @Override
-    public void save(Region obj) {
+    public void save(Region region) {
 
     }
 
     @Override
-    public Region getById(Long aLong) {
+    public Region getById(Long id) {
         return null;
     }
 
     @Override
-    public void update(Region obj) {
+    public void update(Region region) {
 
     }
 
     @Override
-    public void deleteById(Long aLong) {
+    public void deleteById(Long id) {
 
     }
 

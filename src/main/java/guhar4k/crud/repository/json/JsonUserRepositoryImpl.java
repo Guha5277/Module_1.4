@@ -12,17 +12,17 @@ public class JsonUserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User getById(Long aLong) {
+    public User getById(Long id) {
         return null;
     }
 
     @Override
-    public void update(User obj) {
+    public void update(User user) {
 
     }
 
     @Override
-    public void deleteById(Long aLong) {
+    public void deleteById(Long id) {
 
     }
 

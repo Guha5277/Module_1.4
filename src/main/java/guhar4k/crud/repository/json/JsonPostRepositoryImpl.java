@@ -7,22 +7,22 @@ import java.util.List;
 
 public class JsonPostRepositoryImpl implements PostRepository {
     @Override
-    public void save(Post obj) {
+    public void save(Post post) {
 
     }
 
     @Override
-    public Post getById(Long aLong) {
+    public Post getById(Long id) {
         return null;
     }
 
     @Override
-    public void update(Post obj) {
+    public void update(Post post) {
 
     }
 
     @Override
-    public void deleteById(Long aLong) {
+    public void deleteById(Long id) {
 
     }
 
