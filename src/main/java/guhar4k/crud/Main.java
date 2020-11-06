@@ -1,6 +1,7 @@
 package guhar4k.crud;
 
-import guhar4k.crud.view.*;
+import guhar4k.crud.view.View;
+import guhar4k.crud.view.ViewFactory;
 
 public class Main {
     public static void main(String[] args) {
