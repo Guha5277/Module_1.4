@@ -31,8 +31,7 @@ public class JavaIORegionRepositoryImpl implements RegionRepository {
     public Region getById(Long id) {
         List<Region> regionsList = getAll();
         Optional<Region> region = regionsList.stream().filter(r -> r.getId() == id).findFirst();
-        region.orElseThrow(() -> new NoSuchElementException("Repository do not contains record with id " + id));
-        return region.get();
+        return region.orElseThrow(() -> new NoSuchElementException("Repository do not contains record with id " + id));
     }
 
     @Override
