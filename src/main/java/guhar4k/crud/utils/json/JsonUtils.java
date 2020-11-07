@@ -1,7 +1,8 @@
-package guhar4k.crud.utils;
+package guhar4k.crud.utils.json;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
+import guhar4k.crud.utils.MainUtils;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -21,7 +22,16 @@ public class JsonUtils<T> extends MainUtils<T> {
         List<T> records = getAll();
         records.add(record);
 
-        try (Writer writer = new FileWriter(repositoryFile, false)) {
+        try (Writer writer = new FileWriter(getRepositoryFile(), false)) {
+            new Gson().toJson(records, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void rewriteAllRecords(List<T> records) {
+        try (Writer writer = new FileWriter(getRepositoryFile(), false)) {
             new Gson().toJson(records, writer);
         } catch (IOException e) {
             e.printStackTrace();
@@ -31,7 +41,7 @@ public class JsonUtils<T> extends MainUtils<T> {
     @Override
     public List<T> getAll() {
         Gson gson = new Gson();
-        try (JsonReader reader = new JsonReader(new FileReader(repositoryFile))) {
+        try (JsonReader reader = new JsonReader(new FileReader(getRepositoryFile()))) {
             List<T> resultList = gson.fromJson(reader, listType);
             if (resultList != null) return resultList;
         } catch (IOException e) {

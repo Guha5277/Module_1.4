@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 public abstract class MainUtils<T> implements Utils<T>{
-    final File repositoryFile;
+    private final File repositoryFile;
 
     public MainUtils(File repositoryFile) {
         this.repositoryFile = repositoryFile;
@@ -17,5 +17,9 @@ public abstract class MainUtils<T> implements Utils<T>{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public File getRepositoryFile() {
+        return repositoryFile;
     }
 }
