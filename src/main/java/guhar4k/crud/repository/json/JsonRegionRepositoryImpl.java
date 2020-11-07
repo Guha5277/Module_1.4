@@ -3,11 +3,10 @@ package guhar4k.crud.repository.json;
 import com.google.gson.reflect.TypeToken;
 import guhar4k.crud.model.Region;
 import guhar4k.crud.repository.RegionRepository;
-import guhar4k.crud.utils.JsonUtils;
+import guhar4k.crud.utils.json.JsonUtils;
 import guhar4k.crud.utils.Library;
 import guhar4k.crud.utils.Utils;
 
-import javax.swing.text.html.Option;
 import java.io.File;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -40,12 +39,15 @@ public class JsonRegionRepositoryImpl implements RegionRepository {
     public void update(Region region) {
         List<Region> regionList = getAll();
         Optional<Region> foundRegion = regionList.stream().filter(r -> r.getId() == region.getId()).findFirst();
-//        foundRegion.orElseThrow()
+        save(foundRegion.orElseThrow(() -> new NoSuchElementException("Repository do not contains record: " + region)));
     }
 
     @Override
     public void deleteById(Long id) {
-
+        List<Region> regionList = getAll();
+        Optional<Region> foundRegion = regionList.stream().filter(r -> r.getId() == id).findFirst();
+        regionList.remove(foundRegion.orElseThrow(() -> new NoSuchElementException("Repository do not contains record with id " + id)));
+        ioUtils.rewriteAllRecords(regionList);
     }
 
     @Override
