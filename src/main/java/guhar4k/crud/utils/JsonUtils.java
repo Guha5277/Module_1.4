@@ -32,7 +32,8 @@ public class JsonUtils<T> extends MainUtils<T> {
     public List<T> getAll() {
         Gson gson = new Gson();
         try (JsonReader reader = new JsonReader(new FileReader(repositoryFile))) {
-            return gson.fromJson(reader, listType);
+            List<T> resultList = gson.fromJson(reader, listType);
+            if (resultList != null) return resultList;
         } catch (IOException e) {
             e.printStackTrace();
         }
