@@ -35,8 +35,7 @@ public class JavaIOPostRepositoryImpl implements PostRepository {
     public Post getById(Long id) {
         List<Post> postsList = getAll();
         Optional<Post> region = postsList.stream().filter(p -> p.getId() == id).findFirst();
-        region.orElseThrow(() -> new NoSuchElementException("Repository do not contains record with id " + id));
-        return region.get();
+        return region.orElseThrow(() -> new NoSuchElementException("Repository do not contains record with id " + id));
     }
 
     @Override
@@ -52,8 +51,7 @@ public class JavaIOPostRepositoryImpl implements PostRepository {
     public void deleteById(Long id) {
         List<Post> postsList = getAll();
         Optional<Post> post = postsList.stream().filter(p -> p.getId() == id).findFirst();
-        post.orElseThrow(() -> new NoSuchElementException("Repository do not contains record with id " + id));
-        postsList.remove(post.get());
+        postsList.remove(post.orElseThrow(() -> new NoSuchElementException("Repository do not contains record with id " + id)));
         saveAll(postsList);
     }
 

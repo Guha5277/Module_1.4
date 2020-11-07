@@ -47,8 +47,7 @@ public class JavaIORegionRepositoryImpl implements RegionRepository {
     public void deleteById(Long id) {
         List<Region> regionsList = getAll();
         Optional<Region> region = regionsList.stream().filter(r -> r.getId() == id).findFirst();
-        region.orElseThrow(() -> new NoSuchElementException("Repository do not contains record with id " + id));
-        regionsList.remove(region.get());
+        regionsList.remove(region.orElseThrow(() -> new NoSuchElementException("Repository do not contains record with id " + id)));
         saveAll(regionsList);
     }
 

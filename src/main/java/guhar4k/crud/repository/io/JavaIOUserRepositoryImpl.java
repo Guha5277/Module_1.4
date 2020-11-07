@@ -38,8 +38,7 @@ public class JavaIOUserRepositoryImpl implements UserRepository {
     public User getById(Long id) {
         List<User> users = getAll();
         Optional<User> user = users.stream().filter(u -> u.getId() == id).findFirst();
-        user.orElseThrow(() -> new NoSuchElementException("Repository do not contains record with id " + id));
-        return user.get();
+        return user.orElseThrow(() -> new NoSuchElementException("Repository do not contains record with id " + id));
     }
 
     @Override
@@ -58,8 +57,7 @@ public class JavaIOUserRepositoryImpl implements UserRepository {
     public void deleteById(Long id) {
         List<User> users = getAll();
         Optional<User> user = users.stream().filter(u -> u.getId() == id).findFirst();
-        user.orElseThrow(() -> new NoSuchElementException("Repository do not contains record with id " + id));
-        users.remove(user.get());
+        users.remove(user.orElseThrow(() -> new NoSuchElementException("Repository do not contains record with id " + id)));
         saveAll(users);
     }
 
