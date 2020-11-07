@@ -38,8 +38,8 @@ public class JavaIORegionRepositoryImpl implements RegionRepository {
     public void update(Region region) {
         List<Region> regionsList = getAll();
         Optional<Region> resultRegion = regionsList.stream().filter(r -> r.getId() == region.getId()).findFirst();
-        resultRegion.orElseThrow(() -> new NoSuchElementException("Repository do not contains updated item"));
-        resultRegion.get().setName(region.getName());
+        Region foundRegion = resultRegion.orElseThrow(() -> new NoSuchElementException("Repository do not contains updated item"));
+        foundRegion.setName(region.getName());
         saveAll(regionsList);
     }
 
