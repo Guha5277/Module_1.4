@@ -6,7 +6,7 @@ import guhar4k.crud.model.User;
 import guhar4k.crud.repository.PostRepository;
 import guhar4k.crud.repository.RegionRepository;
 import guhar4k.crud.repository.UserRepository;
-import guhar4k.crud.utils.IOUtils;
+import guhar4k.crud.utils.io.IOUtils;
 import guhar4k.crud.utils.Library;
 
 import java.io.File;

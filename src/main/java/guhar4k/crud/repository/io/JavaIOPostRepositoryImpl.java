@@ -2,7 +2,7 @@ package guhar4k.crud.repository.io;
 
 import guhar4k.crud.model.Post;
 import guhar4k.crud.repository.PostRepository;
-import guhar4k.crud.utils.IOUtils;
+import guhar4k.crud.utils.io.IOUtils;
 import guhar4k.crud.utils.Library;
 
 import java.io.File;

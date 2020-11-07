@@ -2,7 +2,7 @@ package guhar4k.crud.repository.io;
 
 import guhar4k.crud.model.Region;
 import guhar4k.crud.repository.RegionRepository;
-import guhar4k.crud.utils.IOUtils;
+import guhar4k.crud.utils.io.IOUtils;
 import guhar4k.crud.utils.Library;
 
 import java.io.*;
