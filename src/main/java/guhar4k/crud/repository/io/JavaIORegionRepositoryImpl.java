@@ -3,6 +3,7 @@ package guhar4k.crud.repository.io;
 import guhar4k.crud.model.Region;
 import guhar4k.crud.repository.RegionRepository;
 import guhar4k.crud.utils.IOUtils;
+import guhar4k.crud.utils.Library;
 
 import java.io.*;
 import java.util.*;
@@ -12,9 +13,8 @@ import static guhar4k.crud.utils.Library.REC_END;
 import static guhar4k.crud.utils.Library.REC_PART_DELIMITER;
 
 public class JavaIORegionRepositoryImpl implements RegionRepository {
-    private final String RES_DIR = "src/main/res/";
     private final String FILE_NAME = "regions.txt";
-    private final File repositoryFile = new File(RES_DIR, FILE_NAME);
+    private final File repositoryFile = new File(Library.RES_DIR, FILE_NAME);
 
     public JavaIORegionRepositoryImpl() {
         if (!repositoryFile.exists()) IOUtils.createNewFile(repositoryFile);

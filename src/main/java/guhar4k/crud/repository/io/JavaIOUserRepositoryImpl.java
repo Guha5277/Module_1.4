@@ -7,6 +7,7 @@ import guhar4k.crud.repository.PostRepository;
 import guhar4k.crud.repository.RegionRepository;
 import guhar4k.crud.repository.UserRepository;
 import guhar4k.crud.utils.IOUtils;
+import guhar4k.crud.utils.Library;
 
 import java.io.File;
 import java.util.*;
@@ -15,9 +16,8 @@ import java.util.stream.Collectors;
 import static guhar4k.crud.utils.Library.*;
 
 public class JavaIOUserRepositoryImpl implements UserRepository {
-    private final String RES_DIR = "src/main/res/";
     private final String FILE_NAME = "users.txt";
-    private final File repositoryFile = new File(RES_DIR, FILE_NAME);
+    private final File repositoryFile = new File(Library.RES_DIR, FILE_NAME);
     private PostRepository postRepository;
     private RegionRepository regionRepository;
 

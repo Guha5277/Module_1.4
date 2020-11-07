@@ -3,6 +3,7 @@ package guhar4k.crud.repository.io;
 import guhar4k.crud.model.Post;
 import guhar4k.crud.repository.PostRepository;
 import guhar4k.crud.utils.IOUtils;
+import guhar4k.crud.utils.Library;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -13,9 +14,8 @@ import static guhar4k.crud.utils.Library.REC_END;
 import static guhar4k.crud.utils.Library.REC_PART_DELIMITER;
 
 public class JavaIOPostRepositoryImpl implements PostRepository {
-    private final String RES_DIR = "src/main/res/";
     private final String FILE_NAME = "posts.txt";
-    private final File repositoryFile = new File(RES_DIR, FILE_NAME);
+    private final File repositoryFile = new File(Library.RES_DIR, FILE_NAME);
 
     public JavaIOPostRepositoryImpl() {
         if (!repositoryFile.exists()) IOUtils.createNewFile(repositoryFile);
