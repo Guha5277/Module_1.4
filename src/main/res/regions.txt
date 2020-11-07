@@ -1,1 +1,1 @@
-2<!p>US<!e>3<!p>KZ<!e>4<!p>RU<!e>5<!p>AZ<!e>6<!p>KZ<!e>
+2<!p>US<!e>3<!p>KZ<!e>4<!p>RU<!e>5<!p>AZ<!e>6<!p>KZ<!e>7<!p>FR<!e>
