@@ -3,6 +3,7 @@ package guhar4k.crud.controller;
 import guhar4k.crud.model.Post;
 import guhar4k.crud.repository.PostRepository;
 import guhar4k.crud.repository.io.JavaIOPostRepositoryImpl;
+import guhar4k.crud.repository.json.JsonPostRepositoryImpl;
 
 import java.util.List;
 
@@ -10,7 +11,8 @@ public class PostController{
     private PostRepository postRepository;
 
     public PostController() {
-        this.postRepository = new JavaIOPostRepositoryImpl();
+//        this.postRepository = new JavaIOPostRepositoryImpl();
+        this.postRepository = new JsonPostRepositoryImpl();
     }
 
     public void save(Post post){

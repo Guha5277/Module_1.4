@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class JsonRegionRepositoryImpl implements RegionRepository {
-    private final String FILE_NAME = "posts.json";
+    private final String FILE_NAME = "regions.json";
     private Utils<Region> ioUtils;
 
     public JsonRegionRepositoryImpl() {
@@ -39,7 +39,8 @@ public class JsonRegionRepositoryImpl implements RegionRepository {
     public void update(Region region) {
         List<Region> regionList = getAll();
         Optional<Region> foundRegion = regionList.stream().filter(r -> r.getId() == region.getId()).findFirst();
-        save(foundRegion.orElseThrow(() -> new NoSuchElementException("Repository do not contains record: " + region)));
+        foundRegion.orElseThrow(() -> new NoSuchElementException("Repository do not contains record: " + region)).setName(region.getName());
+        ioUtils.rewriteAllRecords(regionList);
     }
 
     @Override
