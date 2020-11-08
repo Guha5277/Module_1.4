@@ -11,6 +11,7 @@ public class UserController {
 
     public UserController() {
         userRepository = new JavaIOUserRepositoryImpl();
+//        userRepository = new JsonUserRepositoryImpl();
     }
 
     public void save(User user) {

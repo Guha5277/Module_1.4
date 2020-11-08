@@ -2,6 +2,7 @@ package guhar4k.crud.utils.json;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
+import guhar4k.crud.model.Storable;
 import guhar4k.crud.utils.MainUtils;
 
 import java.io.*;
@@ -9,7 +10,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JsonUtils<T> extends MainUtils<T> {
+public class JsonUtils<T extends Storable> extends MainUtils<Storable> {
     private Type listType;
 
     public JsonUtils(File repositoryFile, Type listType) {
@@ -18,8 +19,8 @@ public class JsonUtils<T> extends MainUtils<T> {
     }
 
     @Override
-    public void saveRecord(T record) {
-        List<T> records = getAll();
+    public void saveRecord(Storable record) {
+        List<Storable> records = getAll();
         records.add(record);
 
         try (Writer writer = new FileWriter(getRepositoryFile(), false)) {
@@ -30,7 +31,7 @@ public class JsonUtils<T> extends MainUtils<T> {
     }
 
     @Override
-    public void rewriteAllRecords(List<T> records) {
+    public void rewriteAllRecords(List<Storable> records) {
         try (Writer writer = new FileWriter(getRepositoryFile(), false)) {
             new Gson().toJson(records, writer);
         } catch (IOException e) {
@@ -39,14 +40,14 @@ public class JsonUtils<T> extends MainUtils<T> {
     }
 
     @Override
-    public List<T> getAll() {
+    public List<Storable> getAll() {
         Gson gson = new Gson();
         try (JsonReader reader = new JsonReader(new FileReader(getRepositoryFile()))) {
-            List<T> resultList = gson.fromJson(reader, listType);
+            List<Storable> resultList = gson.fromJson(reader, listType);
             if (resultList != null) return resultList;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new ArrayList<T>();
+        return new ArrayList<Storable>();
     }
 }

@@ -1,18 +1,20 @@
 package guhar4k.crud.controller;
 
+import com.google.gson.reflect.TypeToken;
 import guhar4k.crud.model.Post;
-import guhar4k.crud.repository.PostRepository;
+import guhar4k.crud.repository.GenericRepository;
 import guhar4k.crud.repository.io.JavaIOPostRepositoryImpl;
-import guhar4k.crud.repository.json.JsonPostRepositoryImpl;
+import guhar4k.crud.repository.json.JsonRepositoryImpl;
 
 import java.util.List;
 
 public class PostController{
-    private PostRepository postRepository;
+    private GenericRepository postRepository;
 
     public PostController() {
-//        this.postRepository = new JavaIOPostRepositoryImpl();
-        this.postRepository = new JsonPostRepositoryImpl();
+        this.postRepository = new JavaIOPostRepositoryImpl();
+//        this.postRepository = new JsonPostRepositoryImpl();
+//        this.postRepository = new JsonRepositoryImpl<Post, Long>("posts.json", new TypeToken<List<Post>>(){}.getType());
     }
 
     public void save(Post post){
@@ -20,7 +22,7 @@ public class PostController{
     }
 
     public Post getById(Long id){
-        return postRepository.getById(id);
+        return (Post) postRepository.getById(id);
     }
 
     public void update(Post post){

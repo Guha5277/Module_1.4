@@ -3,7 +3,7 @@ package guhar4k.crud.model;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Post {
+public class Post implements Storable{
     private long id;
     private String content;
     private LocalDateTime created;
@@ -31,6 +31,7 @@ public class Post {
         this.updated = updated;
     }
 
+    @Override
     public long getId() {
         return id;
     }
@@ -47,6 +48,7 @@ public class Post {
         return updated;
     }
 
+    @Override
     public void setId(long id) {
         this.id = id;
     }

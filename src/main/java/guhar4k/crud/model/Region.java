@@ -1,6 +1,6 @@
 package guhar4k.crud.model;
 
-public class Region {
+public class Region implements Storable {
     private long id;
     private String name;
 
@@ -21,10 +21,12 @@ public class Region {
         this.name = name;
     }
 
+    @Override
     public void setId(long id) {
         this.id = id;
     }
 
+    @Override
     public long getId() {
         return id;
     }
