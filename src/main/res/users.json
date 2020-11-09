@@ -1,0 +1,1 @@
+[{"id":1,"firstName":"Alexey","lastName":"Prigoda","posts":[{"id":1},{"id":2}],"region":{"id":1}},{"id":2,"firstName":"Sobol","lastName":"Prigoda","region":{"id":1}},{"id":3,"firstName":"Salamat","lastName":"Salam","region":{"id":4}},{"id":4,"firstName":"Vhilo","lastName":"Loka","region":{"id":6}}]
