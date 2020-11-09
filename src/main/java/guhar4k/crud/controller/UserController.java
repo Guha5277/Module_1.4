@@ -2,7 +2,7 @@ package guhar4k.crud.controller;
 
 import guhar4k.crud.model.User;
 import guhar4k.crud.repository.UserRepository;
-import guhar4k.crud.repository.json.JsonUserRepositoryImpl;
+import guhar4k.crud.repository.json.JsonRepositoryFactory;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class UserController {
     private UserRepository userRepository;
 
     public UserController() {
-        userRepository = new JsonUserRepositoryImpl();
+        userRepository = JsonRepositoryFactory.getUserRepository();
     }
 
     public void save(User user) {

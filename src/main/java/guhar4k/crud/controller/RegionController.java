@@ -2,7 +2,7 @@ package guhar4k.crud.controller;
 
 import guhar4k.crud.model.Region;
 import guhar4k.crud.repository.RegionRepository;
-import guhar4k.crud.repository.json.JsonRegionRepositoryImpl;
+import guhar4k.crud.repository.json.JsonRepositoryFactory;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class RegionController {
     private RegionRepository regionRepository;
 
     public RegionController() {
-        regionRepository = new JsonRegionRepositoryImpl();
+        regionRepository = JsonRepositoryFactory.getRegionRepository();
     }
 
     public void save(Region region) {

@@ -1,19 +1,22 @@
 package guhar4k.crud.repository.json;
 
 
-import com.google.gson.reflect.TypeToken;
 import guhar4k.crud.model.Storable;
 import guhar4k.crud.model.User;
+import guhar4k.crud.repository.RegionRepository;
 import guhar4k.crud.repository.UserRepository;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class JsonUserRepositoryImpl extends JsonRepositoryImpl<User> implements UserRepository{
+    private RegionRepository regionRepository;
 
-    public JsonUserRepositoryImpl() {
-        super("users.json", new TypeToken<List<User>>() {}.getType());
+    public JsonUserRepositoryImpl(String fileName, Type listType, RegionRepository regionRepository) {
+        super(fileName, listType);
+        this.regionRepository = regionRepository;
     }
 
     @Override
@@ -42,6 +45,7 @@ public class JsonUserRepositoryImpl extends JsonRepositoryImpl<User> implements 
         if (storableList.size() == 0) return new ArrayList<>();
         List<User> userList = storableList.stream()
                 .map(u -> (User) u)
+                .peek(u -> u.setRegion(regionRepository.getById(u.getRegion().getId())))
                 .collect(Collectors.toList());
         return userList;
     }

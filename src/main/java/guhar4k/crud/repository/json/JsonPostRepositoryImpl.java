@@ -5,6 +5,7 @@ import guhar4k.crud.model.Post;
 import guhar4k.crud.model.Storable;
 import guhar4k.crud.repository.PostRepository;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,9 +13,8 @@ import java.util.stream.Collectors;
 public class JsonPostRepositoryImpl extends JsonRepositoryImpl<Post> implements PostRepository {
 
 
-    public JsonPostRepositoryImpl() {
-        super("posts.json", new TypeToken<List<Post>>() {
-        }.getType());
+    public JsonPostRepositoryImpl(String fileName, Type listType) {
+        super(fileName, listType);
     }
 
     @Override
