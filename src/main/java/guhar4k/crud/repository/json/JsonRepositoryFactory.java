@@ -29,6 +29,6 @@ public class JsonRepositoryFactory {
     }
 
     public static UserRepository getUserRepository(){
-       return new JsonUserRepositoryImpl(usersFileName, usersListType, getRegionRepository());
+       return new JsonUserRepositoryImpl(usersFileName, usersListType, getRegionRepository(), getPostRepository());
     }
 }
