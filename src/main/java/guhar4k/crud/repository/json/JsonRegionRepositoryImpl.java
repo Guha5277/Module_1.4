@@ -1,6 +1,5 @@
 package guhar4k.crud.repository.json;
 
-import com.google.gson.reflect.TypeToken;
 import guhar4k.crud.model.Region;
 import guhar4k.crud.model.Storable;
 import guhar4k.crud.repository.RegionRepository;
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JsonRegionRepositoryImpl extends JsonRepositoryImpl<Region> implements RegionRepository {
+public class JsonRegionRepositoryImpl extends JsonRepository<Region> implements RegionRepository {
 
     public JsonRegionRepositoryImpl(String fileName, Type listType) {
         super(fileName, listType);

@@ -1,6 +1,5 @@
 package guhar4k.crud.repository.json;
 
-import com.google.gson.reflect.TypeToken;
 import guhar4k.crud.model.Post;
 import guhar4k.crud.model.Storable;
 import guhar4k.crud.repository.PostRepository;
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JsonPostRepositoryImpl extends JsonRepositoryImpl<Post> implements PostRepository {
+public class JsonPostRepositoryImpl extends JsonRepository<Post> implements PostRepository {
 
 
     public JsonPostRepositoryImpl(String fileName, Type listType) {

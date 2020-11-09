@@ -10,10 +10,10 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class JsonRepositoryImpl<T extends Storable> {
+public class JsonRepository<T extends Storable> {
     private Utils<Storable> ioUtils;
 
-    public JsonRepositoryImpl(String fileName, Type listType) {
+    public JsonRepository(String fileName, Type listType) {
         ioUtils = new JsonUtils<T>(new File(Library.RES_DIR, fileName), listType);
         ioUtils.initRepositoryFile();
     }

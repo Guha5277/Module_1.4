@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JsonUserRepositoryImpl extends JsonRepositoryImpl<User> implements UserRepository {
+public class JsonUserRepositoryImpl extends JsonRepository<User> implements UserRepository {
     private RegionRepository regionRepository;
     private PostRepository postRepository;
 
