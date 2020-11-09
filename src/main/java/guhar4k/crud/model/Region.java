@@ -31,6 +31,11 @@ public class Region implements Storable {
         return id;
     }
 
+    @Override
+    public void cloneFrom(Storable storable) {
+        this.name = ((Region)storable).getName();
+    }
+
     public String getName() {
         return name;
     }

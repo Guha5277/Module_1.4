@@ -2,7 +2,7 @@ package guhar4k.crud.model;
 
 import java.util.List;
 
-public class User {
+public class User implements Storable {
     private long id;
     private String firstName;
     private String lastName;
@@ -21,8 +21,18 @@ public class User {
         this.posts = posts;
     }
 
+    @Override
     public long getId() {
         return id;
+    }
+
+    @Override
+    public void cloneFrom(Storable storable) {
+        User storableUser = ((User) storable);
+        this.firstName = storableUser.getFirstName();
+        this.lastName = storableUser.getLastName();
+        this.posts = storableUser.getPosts();
+        this.region = storableUser.getRegion();
     }
 
     public String getFirstName() {
@@ -41,6 +51,7 @@ public class User {
         return region;
     }
 
+    @Override
     public void setId(long id) {
         this.id = id;
     }
@@ -64,7 +75,7 @@ public class User {
     @Override
     public String toString() {
         StringBuilder postsSB = new StringBuilder();
-        if (posts != null && posts.size() > 0){
+        if (posts != null && posts.size() > 0) {
             for (int i = 0; i < posts.size(); i++) {
                 postsSB.append(posts.get(i).getId());
                 if (i != posts.size() - 1) postsSB.append(" ");

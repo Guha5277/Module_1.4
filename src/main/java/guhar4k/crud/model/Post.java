@@ -36,6 +36,12 @@ public class Post implements Storable{
         return id;
     }
 
+    @Override
+    public void cloneFrom(Storable storable) {
+        this.content = ((Post)storable).getContent();
+        setNewUpdatedTime();
+    }
+
     public String getContent() {
         return content;
     }

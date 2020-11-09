@@ -1,22 +1,16 @@
 package guhar4k.crud.controller;
 
-import com.google.gson.reflect.TypeToken;
 import guhar4k.crud.model.Region;
-import guhar4k.crud.repository.GenericRepository;
 import guhar4k.crud.repository.RegionRepository;
-import guhar4k.crud.repository.io.JavaIORegionRepositoryImpl;
-import guhar4k.crud.repository.json.JsonRepositoryImpl;
+import guhar4k.crud.repository.json.JsonRegionRepositoryImpl;
 
 import java.util.List;
 
 public class RegionController {
-//    private RegionRepository regionRepository;
-    private GenericRepository regionRepository;
+    private RegionRepository regionRepository;
 
     public RegionController() {
-//        regionRepository = new JavaIORegionRepositoryImpl();
-//        regionRepository = new JsonRegionRepositoryImpl();
-        regionRepository = new JsonRepositoryImpl<Region, Long>("regions.json", new TypeToken<List<Region>>(){}.getType());
+        regionRepository = new JsonRegionRepositoryImpl();
     }
 
     public void save(Region region) {
@@ -24,7 +18,7 @@ public class RegionController {
     }
 
     public Region getById(Long id) {
-        return (Region) regionRepository.getById(id);
+        return regionRepository.getById(id);
     }
 
     public void update(Region region) {
